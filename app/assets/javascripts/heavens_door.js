@@ -2,7 +2,11 @@
   if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
     fn();
   } else {
-    document.addEventListener('DOMContentLoaded', fn);
+    if (Turbolinks) {
+      document.addEventListener('turbolinks:load', fn);
+    } else {
+      document.addEventListener('DOMContentLoaded', fn);
+    }
   }
 })(() => {
   document.getElementById('heavens-door-start').addEventListener('click', e => {
