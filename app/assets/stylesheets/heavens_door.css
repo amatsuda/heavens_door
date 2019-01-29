@@ -1,0 +1,4 @@
+#heavens-door { position: absolute; top: 0; right: 0; }
+#heavens-door span { font-size: 13px; cursor: pointer; }
+#heavens-door-stop { display: none; }
+#heavens-door-copy { display: none; }
