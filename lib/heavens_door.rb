@@ -1,6 +1,4 @@
-require "heavens_door/version"
+# frozen_string_literal: true
 
-module HeavensDoor
-  class Error < StandardError; end
-  # Your code goes here...
-end
+require "heavens_door/version"
+require_relative 'heavens_door/engine'
