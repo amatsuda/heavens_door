@@ -36,7 +36,9 @@
       if (sessionStorage.heavensDoor) {
         Array.from(form.querySelectorAll('input,textarea')).forEach(el => {
           if ((el.type == 'text') || (el.type == 'textarea') || (el.type == 'search') || (el.type == 'number') || (el.type == 'email') || (el.type == 'url') || (el.type == 'password') || (el.type == 'tel') || (el.type == 'date')) {
-            sessionStorage.heavensDoor += `    fill_in '${el.id}', with: '${el.value}'\n`;
+            if (el.value) {
+              sessionStorage.heavensDoor += `    fill_in '${el.id}', with: '${el.value}'\n`;
+            }
           } else if (el.type == 'select') {
             sessionStorage.heavensDoor += `    select '${el[el.selectedIndex].value}', from: '${el.id}'\n`;
           } else if ((el.type == 'radio') && el.checked) {
