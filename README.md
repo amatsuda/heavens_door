@@ -32,9 +32,29 @@ You can export the operation as a Capybara test scenario script by clicking the 
 To stop recording and clear the whole recorded scenario, click the ⏹ button.
 
 
+## Requirements
+- Rails
+- Modern browsers
+
+
 ## Contributing
 
 Pull requests are welcome on GitHub at https://github.com/amatsuda/heavens_door.
+
+
+## TODO
+
+- Insert assersions
+
+- Hotkeys to hide/show the panel
+
+- Better UI
+
+- Cleaner JS code
+
+- Tests (do we really need tests for this? Well, maybe...)
+
+- etcetcetc.
 
 
 ## License
