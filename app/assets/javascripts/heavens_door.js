@@ -51,12 +51,14 @@
       if (sessionStorage.heavensDoor) {
         Array.from(form.querySelectorAll('input,textarea,select')).forEach(el => {
           const target = labelIdForElement(el) || el.id;
-          const types = ['text','textarea','search','number','email','url','password','tel','date']
+          const types = ['text','textarea','search','number','email','url','password','tel']
 
           if (types.includes(el.type)) {
             if (el.value) {
               sessionStorage.heavensDoor += `    fill_in '${target}', with: '${el.value}'\n`;
             }
+          } else if (el.type == 'date') {
+            sessionStorage.heavensDoor += `    fill_in '${target}', with: Date.parse('${el.value}')\n`;
           } else if (el.type == 'select-one') {
             sessionStorage.heavensDoor += `    select '${el[el.selectedIndex].value}', from: '${target}'\n`;
           } else if (el.type == 'select-multiple') {
