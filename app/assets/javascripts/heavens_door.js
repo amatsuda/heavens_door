@@ -51,9 +51,8 @@
       if (sessionStorage.heavensDoor) {
         Array.from(form.querySelectorAll('input,textarea,select')).forEach(el => {
           const target = labelIdForElement(el) || el.id;
-          const types = ['text','textarea','search','number','email','url','password','tel']
 
-          if (types.includes(el.type)) {
+          if (['text', 'textarea', 'search', 'number', 'email', 'url', 'password', 'tel'].includes(el.type)) {
             if (el.value) {
               sessionStorage.heavensDoor += `    fill_in '${target}', with: '${el.value}'\n`;
             }
