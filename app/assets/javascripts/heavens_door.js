@@ -49,7 +49,7 @@
   Array.from(document.getElementsByTagName('form')).forEach(form => {
     form.addEventListener('submit', () => {
       if (sessionStorage.heavensDoor) {
-        Array.from(form.querySelectorAll('input,textarea')).forEach(el => {
+        Array.from(form.querySelectorAll('input,textarea,select')).forEach(el => {
           const target = labelIdForElement(el) || el.id;
           const types = ['text','textarea','search','number','email','url','password','tel','date']
 
@@ -57,7 +57,7 @@
             if (el.value) {
               sessionStorage.heavensDoor += `    fill_in '${target}', with: '${el.value}'\n`;
             }
-          } else if (el.type == 'select') {
+          } else if (el.type == 'select-one') {
             sessionStorage.heavensDoor += `    select '${el[el.selectedIndex].value}', from: '${target}'\n`;
           } else if ((el.type == 'radio') && el.checked) {
             sessionStorage.heavensDoor += `    choose '${el.value}'\n`;
