@@ -9,7 +9,7 @@
     }
   }
 })(() => {
-  document.getElementById('heavens-door-start').addEventListener('click', e => {
+  document.getElementById('heavens-door-start').addEventListener('click', () => {
     document.getElementById('heavens-door-start').style.display = 'none';
     document.getElementById('heavens-door-stop').style.display = 'inline';
     document.getElementById('heavens-door-copy').style.display = 'inline';
@@ -20,14 +20,14 @@
     }
   });
 
-  document.getElementById('heavens-door-stop').addEventListener('click', e => {
+  document.getElementById('heavens-door-stop').addEventListener('click', () => {
     document.getElementById('heavens-door-start').style.display = 'inline';
     document.getElementById('heavens-door-stop').style.display = 'none';
     document.getElementById('heavens-door-copy').style.display = 'none';
     sessionStorage.clear('heavensDoor');
   });
 
-  document.getElementById('heavens-door-copy').addEventListener('click', e => {
+  document.getElementById('heavens-door-copy').addEventListener('click', () => {
     navigator.clipboard.writeText(sessionStorage.heavensDoor)
       .catch(err => {
         console.error('Could not copy text: ', err);
@@ -47,12 +47,13 @@
   }
 
   Array.from(document.getElementsByTagName('form')).forEach(form => {
-    form.addEventListener('submit', e => {
+    form.addEventListener('submit', () => {
       if (sessionStorage.heavensDoor) {
         Array.from(form.querySelectorAll('input,textarea')).forEach(el => {
-          let target = labelIdForElement(el) || el.id;
+          const target = labelIdForElement(el) || el.id;
+          const types = ['text','textarea','search','number','email','url','password','tel','date']
 
-          if ((el.type == 'text') || (el.type == 'textarea') || (el.type == 'search') || (el.type == 'number') || (el.type == 'email') || (el.type == 'url') || (el.type == 'password') || (el.type == 'tel') || (el.type == 'date')) {
+          if (types.includes(el.type)) {
             if (el.value) {
               sessionStorage.heavensDoor += `    fill_in '${target}', with: '${el.value}'\n`;
             }
@@ -71,7 +72,7 @@
   })
 
   Array.from(document.getElementsByTagName('a')).forEach(a => {
-    a.addEventListener('click', e => {
+    a.addEventListener('click', () => {
       if (sessionStorage.heavensDoor) {
         sessionStorage.heavensDoor += `    click_link '${a.text}'\n\n`;
       }
