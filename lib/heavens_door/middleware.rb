@@ -9,7 +9,8 @@ module HeavensDoor
     def call(env)
       status, headers, body = @app.call env
 
-      if headers && headers['Content-Type']&.include?('text/html') && (env['REQUEST_PATH'] !~ %r[^/*heavens_door/])
+      if headers && headers['Content-Type']&.include?('text/html') && (env['REQUEST_PATH'] !~ %r[^/*heavens_door/]) &&
+          (!env['action_dispatch.content_security_policy']&.script_src('unsafe-inline') && !env['action_dispatch.content_security_policy']&.style_src('unsafe-inline'))  # the Rails default top page has this
         case body
         when ActionDispatch::Response, ActionDispatch::Response::RackBody
           body = body.body
