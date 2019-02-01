@@ -44,7 +44,9 @@ Pull requests are welcome on GitHub at https://github.com/amatsuda/heavens_door.
 
 ## TODO
 
-- Insert assersions
+- Insert assertions from the browser
+
+- Button click effect
 
 - Hotkeys to hide/show the panel
 
