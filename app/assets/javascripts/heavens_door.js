@@ -2,7 +2,7 @@
   if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
     fn();
   } else {
-    if (Turbolinks) {
+    if ((typeof(Turbolinks) !== 'undefined') && (Turbolinks)) {
       document.addEventListener('turbolinks:load', fn);
     } else {
       document.addEventListener('DOMContentLoaded', fn);
