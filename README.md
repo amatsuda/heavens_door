@@ -8,7 +8,7 @@ A tiny Rails engine that generates capybara test scenario by recording browser o
 Add this line to your Rails application's Gemfile (in most cases, for development group only):
 
 ```ruby
-gem 'heavens_door'
+gem 'heavens_door', group: :development
 ```
 
 
