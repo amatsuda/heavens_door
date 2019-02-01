@@ -39,7 +39,7 @@
     document.getElementById('heavens-door-start').click();
   }
 
-  function labelIdForElement(el) {
+  labelIdForElement = el => {
     if (el.id) {
       const label = document.querySelector(`label[for=${el.id}]`);
       return label ? label.innerHTML : el.id;
