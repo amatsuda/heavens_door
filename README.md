@@ -21,7 +21,7 @@ gem 'heavens_door', group: :development
 Visit your development with your browser, then click the ⏺ button on the top right.
 
 
-### Generate Schenarios
+### Generate Scenarios
 Just manipulate the browser, like fill-in the forms and submit, or click the links.
 Your operations will be recorded on the browser.
 
