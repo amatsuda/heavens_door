@@ -18,7 +18,7 @@ gem 'heavens_door', group: :development
 
 
 ### Start Recording
-Visit your development with your browser, then click the ⏺ button on the top right.
+Visit your development app with your browser, then click the ⏺ button on the top right.
 
 
 ### Generate Scenarios
@@ -26,7 +26,7 @@ Just manipulate the browser, like fill-in the forms and submit, or click the lin
 Your operations will be recorded on the browser.
 
 ### Copy to Clipboard
-You can export the operation as a Capybara test scenario script by clicking the 📋 button.
+You can export the operations as a Capybara test scenario script by clicking the 📋 button.
 
 ### Stop Recording
 To stop recording and clear the whole recorded scenario, click the ⏹ button.
