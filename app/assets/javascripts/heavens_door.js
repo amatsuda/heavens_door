@@ -1,5 +1,5 @@
 (fn => {
-  if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+  if (document.attachEvent ? document.readyState === 'complete' : document.readyState !== 'loading') {
     fn();
   } else {
     if ((typeof(Turbolinks) !== 'undefined') && (Turbolinks)) {
