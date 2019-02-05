@@ -10,6 +10,7 @@ module HeavensDoor
       status, headers, body = @app.call env
 
       if headers && headers['Content-Type']&.include?('text/html') &&
+          (status / 100 != 3) &&  # redirections
           (!env['action_dispatch.content_security_policy']&.script_src('unsafe-inline') && !env['action_dispatch.content_security_policy']&.style_src('unsafe-inline'))  # the Rails default top page has this
         case body
         when ActionDispatch::Response, ActionDispatch::Response::RackBody
