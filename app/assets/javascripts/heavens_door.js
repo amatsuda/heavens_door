@@ -24,7 +24,7 @@
     document.getElementById('heavens-door-start').style.display = 'inline';
     document.getElementById('heavens-door-stop').style.display = 'none';
     document.getElementById('heavens-door-copy').style.display = 'none';
-    sessionStorage.clear('heavensDoor');
+    sessionStorage.removeItem('heavensDoor');
   });
 
   document.getElementById('heavens-door-copy').addEventListener('click', () => {
