@@ -9,10 +9,14 @@
     }
   }
 })(() => {
-  document.getElementById('heavens-door-start').addEventListener('click', () => {
-    document.getElementById('heavens-door-start').style.display = 'none';
-    document.getElementById('heavens-door-stop').style.display = 'inline';
-    document.getElementById('heavens-door-copy').style.display = 'inline';
+  const startBtn = document.getElementById('heavens-door-start');
+  const stopBtn = document.getElementById('heavens-door-stop');
+  const copyBtn = document.getElementById('heavens-door-copy');
+
+  startBtn.addEventListener('click', () => {
+    startBtn.style.display = 'none';
+    stopBtn.style.display = 'inline';
+    copyBtn.style.display = 'inline';
 
     if (!sessionStorage.heavensDoor) {
       sessionStorage.heavensDoor = `  scenario 'GENERATED' do
@@ -20,14 +24,14 @@
     }
   });
 
-  document.getElementById('heavens-door-stop').addEventListener('click', () => {
-    document.getElementById('heavens-door-start').style.display = 'inline';
-    document.getElementById('heavens-door-stop').style.display = 'none';
-    document.getElementById('heavens-door-copy').style.display = 'none';
+  stopBtn.addEventListener('click', () => {
+    startBtn.style.display = 'inline';
+    stopBtn.style.display = 'none';
+    copyBtn.style.display = 'none';
     sessionStorage.removeItem('heavensDoor');
   });
 
-  document.getElementById('heavens-door-copy').addEventListener('click', () => {
+  copyBtn.addEventListener('click', () => {
     navigator.clipboard.writeText(sessionStorage.heavensDoor)
       .catch(err => {
         console.error('Could not copy text: ', err);
@@ -36,7 +40,7 @@
   });
 
   if (sessionStorage.heavensDoor) {
-    document.getElementById('heavens-door-start').click();
+    startBtn.click();
   }
 
   function labelIdForElement(el) {
