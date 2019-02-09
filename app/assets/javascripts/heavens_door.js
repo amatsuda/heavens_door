@@ -9,13 +9,13 @@
     }
   }
 })(() => {
-  const startBtn = document.getElementById('heavens-door-start');
-  const stopBtn = document.getElementById('heavens-door-stop');
+  const openBtn = document.getElementById('heavens-door-open');
+  const closeBtn = document.getElementById('heavens-door-close');
   const copyBtn = document.getElementById('heavens-door-copy');
 
-  startBtn.addEventListener('click', () => {
-    startBtn.style.display = 'none';
-    stopBtn.style.display = 'inline';
+  openBtn.addEventListener('click', () => {
+    openBtn.style.display = 'none';
+    closeBtn.style.display = 'inline';
     copyBtn.style.display = 'inline';
 
     if (!sessionStorage.heavensDoor) {
@@ -24,9 +24,9 @@
     }
   });
 
-  stopBtn.addEventListener('click', () => {
-    startBtn.style.display = 'inline';
-    stopBtn.style.display = 'none';
+  closeBtn.addEventListener('click', () => {
+    openBtn.style.display = 'inline';
+    closeBtn.style.display = 'none';
     copyBtn.style.display = 'none';
     sessionStorage.removeItem('heavensDoor');
   });
@@ -40,7 +40,7 @@
   });
 
   if (sessionStorage.heavensDoor) {
-    startBtn.click();
+    openBtn.click();
   }
 
   function labelIdForElement(el) {
