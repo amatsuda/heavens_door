@@ -48,8 +48,6 @@ Pull requests are welcome on GitHub at https://github.com/amatsuda/heavens_door.
 
 - Some kinds of input (like time\_field, datetime\_field) might not be working properly
 
-- Button click effect
-
 - Hotkeys to hide/show the panel
 
 - Better UI
