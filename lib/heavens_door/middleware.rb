@@ -21,7 +21,7 @@ module HeavensDoor
 
         body = body.dup if body.frozen?
         body.sub!(/<\/head[^>]*>/) { %Q[<link rel="stylesheet" href="/assets/heavens_door.css" /><script src="/assets/heavens_door.js"></script>\n#{$~}] }
-        body.sub!(/<body[^>]*>/) { %Q[#{$~}\n<div id="heavens-door" class="heavens-door-custom"><span id="heavens-door-start">⏺</span><span id="heavens-door-stop">⏹</span><span id="heavens-door-copy">📋</span></div>] }
+        body.sub!(/<body[^>]*>/) { %Q[#{$~}\n<div id="heavens-door" class="heavens-door-custom"><span id="heavens-door-start" class="heavens-door-button">⏺</span><span id="heavens-door-stop" class="heavens-door-button">⏹</span><span id="heavens-door-copy" class="heavens-door-button">📋</span></div>] }
 
         [status, headers, [body]]
       else

@@ -1,1 +1,22 @@
-#heavens-door { position: fixed; top: 10px; right: 10px; font-size: 13px; cursor: pointer; z-index: 9999; } #heavens-door-stop,#heavens-door-copy { display: none; }
+#heavens-door {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  font-size: 13px;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+#heavens-door-stop, #heavens-door-copy {
+  display: none;
+}
+
+.heavens-door-button {
+  position: relative;
+  top: 0;
+}
+
+.heavens-door-button:active {
+  top: 2px;
+  opacity: .6;
+}
