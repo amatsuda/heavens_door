@@ -9,14 +9,14 @@
     }
   }
 })(() => {
-  const openBtn = document.getElementById('heavens-door-open');
-  const closeBtn = document.getElementById('heavens-door-close');
-  const copyBtn = document.getElementById('heavens-door-copy');
+  const openButton = document.getElementById('heavens-door-open');
+  const closeButton = document.getElementById('heavens-door-close');
+  const copyButton = document.getElementById('heavens-door-copy');
 
-  openBtn.addEventListener('click', () => {
-    openBtn.style.display = 'none';
-    closeBtn.style.display = 'inline';
-    copyBtn.style.display = 'inline';
+  openButton.addEventListener('click', () => {
+    openButton.style.display = 'none';
+    closeButton.style.display = 'inline';
+    copyButton.style.display = 'inline';
 
     if (!sessionStorage.heavensDoor) {
       sessionStorage.heavensDoor = `  scenario 'GENERATED' do
@@ -24,14 +24,14 @@
     }
   });
 
-  closeBtn.addEventListener('click', () => {
-    openBtn.style.display = 'inline';
-    closeBtn.style.display = 'none';
-    copyBtn.style.display = 'none';
+  closeButton.addEventListener('click', () => {
+    openButton.style.display = 'inline';
+    closeButton.style.display = 'none';
+    copyButton.style.display = 'none';
     sessionStorage.removeItem('heavensDoor');
   });
 
-  copyBtn.addEventListener('click', () => {
+  copyButton.addEventListener('click', () => {
     navigator.clipboard.writeText(sessionStorage.heavensDoor)
       .catch(err => {
         console.error('Could not copy text: ', err);
@@ -40,7 +40,7 @@
   });
 
   if (sessionStorage.heavensDoor) {
-    openBtn.click();
+    openButton.click();
   }
 
   function labelIdForElement(el) {
