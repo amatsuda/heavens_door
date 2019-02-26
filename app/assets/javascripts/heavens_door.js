@@ -37,10 +37,11 @@
   });
 
   copyButton.addEventListener('click', () => {
-    navigator.clipboard.writeText(sessionStorage.heavensDoor)
+    const scenario = `${sessionStorage.heavensDoor}\n  end`;
+    navigator.clipboard.writeText(scenario)
       .catch(err => {
         console.error('Could not copy text: ', err);
-        alert(sessionStorage.heavensDoor);
+        alert(scenario);
       });
   });
 
