@@ -42,6 +42,7 @@
         console.error('Could not copy text: ', err);
         alert(sessionStorage.heavensDoor);
       });
+    alert('Clipped!')
   });
 
   if (sessionStorage.heavensDoor) {
