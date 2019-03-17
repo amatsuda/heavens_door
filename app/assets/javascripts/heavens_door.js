@@ -37,6 +37,13 @@
   });
 
   copyButton.addEventListener('click', () => {
+
+    var toast = document.getElementById("heavens-door-toast");
+
+    toast.className = "show";
+  
+    setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
+
     navigator.clipboard.writeText(sessionStorage.heavensDoor)
       .catch(err => {
         console.error('Could not copy text: ', err);
