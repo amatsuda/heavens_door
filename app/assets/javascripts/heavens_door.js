@@ -37,11 +37,17 @@
   });
 
   copyButton.addEventListener('click', () => {
-    navigator.clipboard.writeText(sessionStorage.heavensDoor)
-      .catch(err => {
-        console.error('Could not copy text: ', err);
-        alert(sessionStorage.heavensDoor);
-      });
+    const textarea = document.createElement('textarea');
+    textarea.value = sessionStorage.heavensDoor;
+    document.body.appendChild(textarea);
+    textarea.select();
+
+    if (!document.execCommand('copy')) {
+      console.error('Could not copy text because `copy` command is unsupported or disabled');
+      alert(sessionStorage.heavensDoor);
+    }
+
+    document.body.removeChild(textarea);
   });
 
   if (sessionStorage.heavensDoor) {
