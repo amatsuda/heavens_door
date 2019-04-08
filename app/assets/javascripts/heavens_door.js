@@ -59,7 +59,7 @@
     form.addEventListener('submit', () => {
       if (sessionStorage.heavensDoor) {
         Array.from(form.querySelectorAll('input,textarea,select')).forEach(el => {
-          const target = labelIdForElement(el) || el.id;
+          const target = labelIdForElement(el) || el.id || el.name;
 
           if (['text', 'textarea', 'search', 'number', 'email', 'url', 'password', 'tel'].includes(el.type)) {
             if (el.value) {
