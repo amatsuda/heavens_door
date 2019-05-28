@@ -68,10 +68,10 @@
           } else if (el.type == 'date') {
             sessionStorage.heavensDoor += `    fill_in '${target}', with: Date.parse('${el.value}')\n`;
           } else if (el.type == 'select-one') {
-            sessionStorage.heavensDoor += `    select '${el[el.selectedIndex].value}', from: '${target}'\n`;
+            sessionStorage.heavensDoor += `    select '${el[el.selectedIndex].text}', from: '${target}'\n`;
           } else if (el.type == 'select-multiple') {
             Array.from(el.selectedOptions).forEach(o => {
-              sessionStorage.heavensDoor += `    select '${o.value}', from: '${target}'\n`;
+              sessionStorage.heavensDoor += `    select '${o.text}', from: '${target}'\n`;
             })
           } else if ((el.type == 'radio') && el.checked) {
             sessionStorage.heavensDoor += `    choose '${el.value}'\n`;
