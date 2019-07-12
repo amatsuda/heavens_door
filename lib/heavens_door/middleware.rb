@@ -21,7 +21,7 @@ module HeavensDoor
 
         body = body.dup if body.frozen?
         body.sub!(/<\/head[^>]*>/) { %Q[<link rel="stylesheet" href="#{Rails.application.config.assets.prefix}/heavens_door.css" /><script src="#{Rails.application.config.assets.prefix}/heavens_door.js"></script>\n#{$~}] }
-        body.sub!(/<body[^>]*>/) { %Q[#{$~}\n<div id="heavens-door" class="heavens-door-custom"><span id="heavens-door-open" class="heavens-door-button">⏺</span><span id="heavens-door-close" class="heavens-door-button">⏹</span><span id="heavens-door-copy" class="heavens-door-button">📋</span></div>] }
+        body.sub!(/<body[^>]*>/) { %Q[#{$~}\n<div id="heavens-door" class="heavens-door-custom"><span id="heavens-door-open" class="heavens-door-button">⏺</span><span id="heavens-door-close" class="heavens-door-button">⏹</span><span id="heavens-door-copy" class="heavens-door-button">📋</span><span id="heavens-door-toast">Cliped Scenario!</span></div>] }
 
         [status, headers, [body]]
       else
