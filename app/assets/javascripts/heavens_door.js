@@ -55,41 +55,56 @@
     }
   }
 
-  Array.from(document.getElementsByTagName('form')).forEach(form => {
-    form.addEventListener('submit', () => {
-      if (sessionStorage.heavensDoor) {
-        Array.from(form.querySelectorAll('input,textarea,select')).forEach(el => {
-          const target = labelIdForElement(el) || el.id || el.name;
+  const listen = (targetNode) => {
+    Array.from(targetNode.getElementsByTagName('form')).forEach(form => {
+      form.addEventListener('submit', () => {
+        if (sessionStorage.heavensDoor) {
+          Array.from(form.querySelectorAll('input,textarea,select')).forEach(el => {
+            const target = labelIdForElement(el) || el.id || el.name;
 
-          if (['text', 'textarea', 'search', 'number', 'email', 'url', 'password', 'tel'].includes(el.type)) {
-            if (el.value) {
-              sessionStorage.heavensDoor += `    fill_in '${target}', with: '${el.value}'\n`;
+            if (['text', 'textarea', 'search', 'number', 'email', 'url', 'password', 'tel'].includes(el.type)) {
+              if (el.value) {
+                sessionStorage.heavensDoor += `    fill_in '${target}', with: '${el.value}'\n`;
+              }
+            } else if (el.type == 'date') {
+              sessionStorage.heavensDoor += `    fill_in '${target}', with: Date.parse('${el.value}')\n`;
+            } else if (el.type == 'select-one') {
+              sessionStorage.heavensDoor += `    select '${el[el.selectedIndex].text}', from: '${target}'\n`;
+            } else if (el.type == 'select-multiple') {
+              Array.from(el.selectedOptions).forEach(o => {
+                sessionStorage.heavensDoor += `    select '${o.text}', from: '${target}'\n`;
+              })
+            } else if ((el.type == 'radio') && el.checked) {
+              sessionStorage.heavensDoor += `    choose '${el.value}'\n`;
+            } else if ((el.type == 'checkbox') && el.checked) {
+              sessionStorage.heavensDoor += `    check '${el.value}'\n`;
             }
-          } else if (el.type == 'date') {
-            sessionStorage.heavensDoor += `    fill_in '${target}', with: Date.parse('${el.value}')\n`;
-          } else if (el.type == 'select-one') {
-            sessionStorage.heavensDoor += `    select '${el[el.selectedIndex].text}', from: '${target}'\n`;
-          } else if (el.type == 'select-multiple') {
-            Array.from(el.selectedOptions).forEach(o => {
-              sessionStorage.heavensDoor += `    select '${o.text}', from: '${target}'\n`;
-            })
-          } else if ((el.type == 'radio') && el.checked) {
-            sessionStorage.heavensDoor += `    choose '${el.value}'\n`;
-          } else if ((el.type == 'checkbox') && el.checked) {
-            sessionStorage.heavensDoor += `    check '${el.value}'\n`;
-          }
-        })
+          })
 
-        sessionStorage.heavensDoor += `    click_button '${form.querySelector('input[type=submit]').value}'\n\n`;
+          sessionStorage.heavensDoor += `    click_button '${form.querySelector('input[type=submit]').value}'\n\n`;
+        }
+      });
+    })
+
+    Array.from(targetNode.getElementsByTagName('a')).forEach(a => {
+      a.addEventListener('click', () => {
+        if (sessionStorage.heavensDoor) {
+          sessionStorage.heavensDoor += `    click_link '${a.text}'\n\n`;
+        }
+      });
+    })
+  };
+
+  const observer = new MutationObserver(records => {
+    records.forEach(record => {
+      if (record.addedNodes.length > 0) {
+        record.addedNodes.forEach(node => {
+          listen(node);
+        });
       }
     });
-  })
+  });
 
-  Array.from(document.getElementsByTagName('a')).forEach(a => {
-    a.addEventListener('click', () => {
-      if (sessionStorage.heavensDoor) {
-        sessionStorage.heavensDoor += `    click_link '${a.text}'\n\n`;
-      }
-    });
-  })
+  listen(document);
+  observer.observe(document, { childList: true, subtree: true });
 })
