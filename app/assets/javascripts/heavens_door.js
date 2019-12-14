@@ -37,11 +37,29 @@
   });
 
   copyButton.addEventListener('click', () => {
-    navigator.clipboard.writeText(sessionStorage.heavensDoor)
-      .catch(err => {
-        console.error('Could not copy text: ', err);
-        alert(sessionStorage.heavensDoor);
-      });
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(sessionStorage.heavensDoor)
+        .catch(err => {
+          console.error('Could not copy text: ', err);
+          alert(sessionStorage.heavensDoor);
+        });
+    } else {
+      const dummyElement = document.createElement('span');
+      dummyElement.style.whiteSpace = 'pre'
+      dummyElement.textContent = sessionStorage.heavensDoor;
+      document.body.appendChild(dummyElement)
+
+      const selection = window.getSelection();
+      selection.removeAllRanges()
+      const range = document.createRange()
+      range.selectNode(dummyElement)
+      selection.addRange(range)
+
+      document.execCommand('copy');
+
+      selection.removeAllRanges()
+      document.body.removeChild(dummyElement)
+    }
   });
 
   if (sessionStorage.heavensDoor) {
