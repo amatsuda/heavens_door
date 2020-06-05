@@ -15,7 +15,7 @@ module HeavensDoor
         case body
         when ActionDispatch::Response, ActionDispatch::Response::RackBody
           body = body.body
-        when Array
+        when Array, Rack::BodyProxy
           body = body[0]
         end
 
