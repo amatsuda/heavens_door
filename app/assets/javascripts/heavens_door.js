@@ -38,6 +38,7 @@
 
   copyButton.addEventListener('click', () => {
     if (navigator.clipboard) {
+      sessionStorage.heavensDoor.endsWith(`  end\n`) ? sessionStorage.heavensDoor : sessionStorage.heavensDoor += `   end\n`
       navigator.clipboard.writeText(sessionStorage.heavensDoor)
         .catch(err => {
           console.error('Could not copy text: ', err);
@@ -76,6 +77,7 @@
   Array.from(document.getElementsByTagName('form')).forEach(form => {
     form.addEventListener('submit', () => {
       if (sessionStorage.heavensDoor) {
+        sessionStorage.heavensDoor = sessionStorage.heavensDoor.replace(`  end\n`, "")
         Array.from(form.querySelectorAll('input,textarea,select')).forEach(el => {
           const target = labelIdForElement(el) || el.id || el.name;
 
@@ -106,6 +108,7 @@
   Array.from(document.getElementsByTagName('a')).forEach(a => {
     a.addEventListener('click', () => {
       if (sessionStorage.heavensDoor) {
+        sessionStorage.heavensDoor = sessionStorage.heavensDoor.replace(`  end\n`, "")
         sessionStorage.heavensDoor += `    click_link '${a.text}'\n\n`;
       }
     });
