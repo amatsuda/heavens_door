@@ -11,6 +11,14 @@ Add this line to your Rails application's Gemfile (in most cases, for developmen
 gem 'heavens_door', group: :development
 ```
 
+Enable running of unsafe scripts via Application Controller
+
+```ruby
+content_security_policy false
+```
+
+> Please not this code should _not_ be committed and be left in place only when generating test scripts in development mode. If this code is pushed to production it will open out your site to attacks.
+
 
 ## Usage
 
