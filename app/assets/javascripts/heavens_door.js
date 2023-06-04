@@ -11,6 +11,8 @@
       }
     } else {  // no turbolinks
       document.addEventListener('DOMContentLoaded', fn);
+      // Turbo is not yet available for detection here, need to attach the listener anyway
+      document.documentElement.addEventListener('turbo:load', fn);
     }
   }
 })(() => {
